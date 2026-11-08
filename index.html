@@ -63,9 +63,33 @@
 </section>
 
 <section id="works">
- <div class="head"><div><div class="eyebrow rv">Products</div><h2 class="rv">Selected <em>designs</em></h2></div><p class="lead rv" style="margin:0">Tap any design to see the full piece and its details.</p></div>
+ <div class="head">
+  <div>
+   <div class="eyebrow rv">Products</div>
+   <h2 class="rv">Selected <em>designs</em></h2>
+  </div>
+  <div class="head-actions rv">
+   <p class="lead" style="margin:0">Tap any design to see the full piece and its details.</p>
+   <div class="carousel-controls">
+    <button class="c-ctrl prev" id="cPrev" aria-label="Previous designs" title="Previous designs">‹</button>
+    <button class="c-ctrl next" id="cNext" aria-label="Next designs" title="Next designs">›</button>
+    <button class="view-toggle" id="viewToggle" aria-label="Toggle carousel or grid view" title="Toggle Carousel / Grid">
+     <span class="vt-icon" id="vtIcon">⊞</span>
+     <span class="vt-label" id="vtLabel">Grid view</span>
+    </button>
+   </div>
+  </div>
+ </div>
  <div class="chips rv" id="chips"></div>
- <div class="grid" id="grid"></div>
+ <div class="carousel-wrapper rv" id="cWrapper">
+  <button class="c-arrow prev" id="cArrowL" aria-label="Previous design">‹</button>
+  <div class="grid carousel" id="grid"></div>
+  <button class="c-arrow next" id="cArrowR" aria-label="Next design">›</button>
+ </div>
+ <div class="carousel-footer rv" id="cFooter">
+  <div class="c-dots" id="cDots"></div>
+  <div class="c-counter" id="cCounter">1 / 12</div>
+ </div>
  <div class="cta rv"><div class="eyebrow">Your turn</div><h2>Have a design in mind? Let’s make it happen.</h2><p class="lead">Send me the details on WhatsApp and I’ll get back to you with ideas.</p><div class="btns" style="justify-content:center"><a class="btn" href="https://wa.me/2349065779190" target="_blank" rel="noopener">Chat on WhatsApp</a></div></div>
 </section>
 
