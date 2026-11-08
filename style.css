@@ -9,7 +9,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .s2{bottom:0;right:0;width:260px;height:300px;clip-path:polygon(100% 0,100% 100%,0 100%);transform:scaleX(-1) scaleY(-1);transform-origin:center}
 #bar{position:fixed;top:env(safe-area-inset-top,0px);left:0;height:3px;width:0;background:var(--g);z-index:100;box-shadow:0 0 12px var(--g)}
 nav{position:fixed;top:env(safe-area-inset-top,0px);left:0;right:0;z-index:80;display:flex;align-items:center;justify-content:space-between;padding:14px 5vw;transition:background .3s,padding .3s,backdrop-filter .3s}
-nav.sc{background:rgba(13,15,11,.82);backdrop-filter:blur(14px);padding:9px 5vw;border-bottom:1px solid var(--line)}
+nav.sc{background:#0d0f0b;backdrop-filter:blur(14px);padding:9px 5vw;border-bottom:1px solid var(--line)}
 .brand{display:flex;align-items:center;gap:10px;color:var(--ink);text-decoration:none;font-weight:800;letter-spacing:.14em;font-size:12px;text-transform:uppercase}
 .brand img{width:40px;height:40px;border-radius:4px;display:block;object-fit:contain}
 .links{display:flex;align-items:center;gap:30px}
@@ -467,5 +467,116 @@ input, textarea {
     flex-shrink: 0;
     white-space: nowrap;
     padding: 8px 16px;
+  }
+}
+
+
+/* --- MOBILE DRAWER & NAVBAR SOLID STYLING --- */
+.drawer-header {
+  display: none;
+}
+@media (max-width: 860px) {
+  nav {
+    background: #0d0f0b;
+    border-bottom: 1px solid var(--line);
+    transition: background .25s ease, padding .25s ease;
+  }
+  nav.sc, nav.menu-open {
+    background: #0d0f0b !important;
+    backdrop-filter: none !important;
+    border-bottom: 1px solid var(--line);
+  }
+  .links {
+    position: fixed !important;
+    top: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: min(320px, 82%) !important;
+    background: #0d0f0b !important; /* 100% solid, fully opaque */
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    align-items: stretch !important;
+    padding: calc(22px + env(safe-area-inset-top, 0px)) 26px calc(24px + env(safe-area-inset-bottom, 0px)) !important;
+    gap: 8px !important;
+    transform: translateX(100%) !important;
+    transition: transform .32s cubic-bezier(.2, .8, .2, 1) !important;
+    border-left: 1px solid var(--line) !important;
+    z-index: 90 !important;
+    box-shadow: -12px 0 50px rgba(0, 0, 0, .85) !important;
+    overflow-y: auto !important;
+  }
+  .links.open {
+    transform: translateX(0) !important;
+  }
+  .drawer-header {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding-bottom: 16px !important;
+    margin-bottom: 8px !important;
+    border-bottom: 1px solid var(--line) !important;
+  }
+  .drawer-title {
+    font-size: 11px !important;
+    letter-spacing: .22em !important;
+    text-transform: uppercase !important;
+    color: var(--g) !important;
+    font-weight: 700 !important;
+  }
+  .drawer-close {
+    width: 36px !important;
+    height: 36px !important;
+    border-radius: 50% !important;
+    border: 1px solid var(--line) !important;
+    background: var(--card) !important;
+    color: var(--ink) !important;
+    font-size: 16px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    transition: all .2s ease !important;
+  }
+  .drawer-close:hover {
+    border-color: var(--g) !important;
+    color: var(--g) !important;
+    transform: rotate(90deg) scale(1.05) !important;
+  }
+  .links a {
+    font-size: 13px !important;
+    letter-spacing: .14em !important;
+    padding: 12px 4px !important;
+    border-bottom: 1px solid rgba(255, 255, 255, .05) !important;
+    opacity: .8 !important;
+  }
+  .links a:not(.pill)::after {
+    bottom: -1px !important;
+  }
+  .links a.active {
+    opacity: 1 !important;
+    color: var(--g) !important;
+  }
+  .links a.active:not(.pill)::after {
+    width: 100% !important;
+  }
+  .links .pill {
+    margin-top: 14px !important;
+    text-align: center !important;
+    padding: 14px 20px !important;
+    border-bottom: none !important;
+  }
+  .nav-backdrop {
+    position: fixed !important;
+    inset: 0 !important;
+    background: rgba(0, 0, 0, .8) !important;
+    backdrop-filter: blur(6px) !important;
+    z-index: 85 !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    transition: opacity .3s ease !important;
+  }
+  .nav-backdrop.show {
+    opacity: 1 !important;
+    pointer-events: auto !important;
   }
 }

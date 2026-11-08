@@ -297,11 +297,22 @@ function toggleMenu(open){
  $('burger').textContent=isOpen?'✕':'☰';
  $('burger').setAttribute('aria-expanded',isOpen);
  if($('navBackdrop'))$('navBackdrop').classList.toggle('show',isOpen);
+ document.body.style.overflow=isOpen?'hidden':'';
 }
 
 $('burger').onclick=()=>toggleMenu();
+if($('drawerClose'))$('drawerClose').onclick=()=>toggleMenu(false);
 if($('navBackdrop'))$('navBackdrop').onclick=()=>toggleMenu(false);
 $('links').querySelectorAll('a').forEach(a=>a.onclick=()=>toggleMenu(false));
+
+// Close menu when clicking outside of links and burger
+document.addEventListener('click',e=>{
+ if($('links').classList.contains('open')){
+  if(!e.target.closest('#links')&&!e.target.closest('#burger')){
+   toggleMenu(false);
+  }
+ }
+});
 
 const secIds=['home','about','works','contact'];
 function updateScrollSpy(){
