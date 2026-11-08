@@ -188,14 +188,19 @@ function fill(){
  mi.classList.add('an');
  const th=$('mth');
  th.innerHTML='';
- if(g.length>1)g.forEach((x,n)=>{
-  const im=document.createElement('img');
-  im.src=IMGS[x];
-  im.alt='View '+(n+1);
-  if(n===gi)im.className='on';
-  im.onclick=()=>{gi=n;fill()};
-  th.appendChild(im);
- });
+ if(g.length>1){
+  g.forEach((x,n)=>{
+   const im=document.createElement('img');
+   im.src=IMGS[x];
+   im.alt='View '+(n+1);
+   if(n===gi)im.className='on';
+   im.onclick=()=>{gi=n;fill()};
+   th.appendChild(im);
+  });
+  if($('mSlideBadge')){$('mSlideBadge').textContent=(gi+1)+' / '+g.length;$('mSlideBadge').style.display='block'}
+ } else {
+  if($('mSlideBadge'))$('mSlideBadge').style.display='none';
+ }
  $('mimg').alt=p.t;
  $('mcat').textContent=p.c;
  $('mtitle').textContent=p.t;
