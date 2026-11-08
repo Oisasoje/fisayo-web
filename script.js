@@ -303,13 +303,35 @@ $('burger').onclick=()=>toggleMenu();
 if($('navBackdrop'))$('navBackdrop').onclick=()=>toggleMenu(false);
 $('links').querySelectorAll('a').forEach(a=>a.onclick=()=>toggleMenu(false));
 
+const secIds=['home','about','works','contact'];
+function updateScrollSpy(){
+ const y=scrollY+130;
+ let curSec='home';
+ for(let i=0;i<secIds.length;i++){
+  const el=$(secIds[i]);
+  if(el&&y>=el.offsetTop){
+   curSec=secIds[i];
+  }
+ }
+ if(innerHeight+scrollY>=document.documentElement.scrollHeight-60){
+  curSec='contact';
+ }
+ $('links').querySelectorAll('a:not(.pill)').forEach(a=>{
+  const isMatch=a.getAttribute('href')==='#'+curSec;
+  a.classList.toggle('active',isMatch);
+ });
+}
+
 function onScroll(){
  const y=scrollY,h=document.documentElement.scrollHeight-innerHeight;
  $('bar').style.width=(h>0?y/h*100:0)+'%';
  $('nav').classList.toggle('sc',y>30);
  $('top').classList.toggle('on',y>600);
+ updateScrollSpy();
 }
-addEventListener('scroll',onScroll,{passive:true});onScroll();
+addEventListener('scroll',onScroll,{passive:true});
+onScroll();
+window.addEventListener('hashchange',()=>setTimeout(updateScrollSpy,50));
 $('top').onclick=()=>scrollTo({top:0,behavior:'smooth'});
 
 function count(el){
